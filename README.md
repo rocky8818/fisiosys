@@ -45,3 +45,31 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+
+# Fisiosys 💪
+
+## Description
+
+    Fisiosys is a system for big centres with multiple phisiotherapists, the idea for fisiosys is to be a manager for each user in the centre. But also give them a web page.
+    In the administrator the will be able to create clients, appointments and also a history for each client where they will be adding cases like what was the first way the client get there.
+
+
+## Connection and DB
+
+    The system uses astro db, a drizzle based database. And will be remotely connected to astro studio.
+
+## Fisiosys as a product
+
+    Fisiosys will be hosted in fisiosys.com a domain bought by RGG. We arent sure if it will use the sneat product design.
+
+## Zero to build
+
+    - Clone the repo
+    - Connect to astro studio. Link to a new or existing project & push your local db config to the remote db
+    ```ts
+    npx astro login
+    npx astro link
+    npx astro db push
+    ```
+    - npx astro build --remote
