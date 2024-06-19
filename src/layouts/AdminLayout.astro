@@ -1,6 +1,7 @@
 
 ---
 import ContactIcon from "../AdminComponents/BoxIcons/ContactIcon.astro"
+import DashboardIcon from "../AdminComponents/BoxIcons/DashboardIcon.astro"
 ---
 
 <!DOCTYPE html>
@@ -58,7 +59,7 @@ import ContactIcon from "../AdminComponents/BoxIcons/ContactIcon.astro"
     <!-- Menu -->
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
       <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="/dashboard" class="app-brand-link">
           <span class="app-brand-logo demo">
             <img src="/assets/img/branding/logo.png" class="h-auto" width="22" alt="logo">
           </span>
@@ -74,20 +75,26 @@ import ContactIcon from "../AdminComponents/BoxIcons/ContactIcon.astro"
 
       <ul class="menu-inner py-1">
         <!-- Page -->
+        <li class="menu-item ">
+          <a href="/admin/dashboard" class="menu-link">
+            <i class="menu-icon"><DashboardIcon/></i>
+            <div data-i18n="Email">Dashboard</div>
+          </a>
+        </li>
         <li class="menu-item active">
-          <a href="index.html" class="menu-link">
+          <a href="/admin/calendario" class="menu-link">
             <i class="menu-icon tf-icons bx bx-calendar"></i>
             <div data-i18n="Email">Calendario</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="page-2.html" class="menu-link">
+          <a href="/admin/pacientes" class="menu-link">
             <i class="menu-icon"><ContactIcon/></i>
             <div data-i18n="Email">Pacientes</div>
           </a>
         </li>
         <li class="menu-item">
-            <a href="page-2.html" class="menu-link">
+            <a href="/admin/config" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
                 <div data-i18n="Email">Configuracion web</div>
             </a>
