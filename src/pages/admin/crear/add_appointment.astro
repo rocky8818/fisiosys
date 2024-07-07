@@ -1,0 +1,58 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+const {date, time} = Astro.props;
+---
+
+<AdminLayout>
+  <div style="padding: 20px;">
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Agendar una cita</h5>
+      </div>
+      
+      <div class="card-body">
+        <form>
+          <div class="row mb-4">
+            <div class="col-md-6 col-12">
+              <label for="flatpickr-date" class="form-label">Date Picker</label>
+              <input type="text" class="form-control flatpickr-input" placeholder="YYYY-MM-DD" value={date} id="flatpickr-date" readonly="readonly">
+            </div>
+            <div class="col-md-6 col-12">
+              <label for="flatpickr-time" class="form-label">Time Picker</label>
+              <input type="text" class="form-control flatpickr-input" placeholder="HH:MM" value={time} id="flatpickr-time" readonly="readonly">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="basic-icon-default-fullname">Nombre</label>
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
+              <input type="text" class="form-control" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="basic-icon-default-email">Email</label>
+            <div class="input-group input-group-merge">
+              <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+              <input type="text" id="basic-icon-default-email" class="form-control" placeholder="john.doe" aria-label="john.doe" aria-describedby="basic-icon-default-email2">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="basic-icon-default-phone">Número Celular</label>
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-phone2" class="input-group-text"><i class="bx bx-phone"></i></span>
+              <input type="text" id="basic-icon-default-phone" class="form-control phone-mask" placeholder="871 458 2803" aria-label="871 458 2803" aria-describedby="basic-icon-default-phone2">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="basic-icon-default-message">Notas</label>
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-message2" class="input-group-text"><i class="bx bx-comment"></i></span>
+              <textarea id="basic-icon-default-message" class="form-control" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Agendar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</AdminLayout>

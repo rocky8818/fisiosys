@@ -12,6 +12,10 @@
   "dependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/db": "^0.11.6",
+    "@fullcalendar/core": "^6.1.14",
+    "@fullcalendar/daygrid": "^6.1.14",
+    "@fullcalendar/interaction": "^6.1.14",
+    "@fullcalendar/timegrid": "^6.1.14",
     "astro": "^4.10.3",
     "typescript": "^5.4.5"
   }

@@ -1,0 +1,60 @@
+---
+// src/components/Calendar.astro
+import { Appointments } from 'astro:db';
+import {db} from 'astro:db';
+
+var dbAppointments = await db.select().from(Appointments)
+
+console.log(dbAppointments)
+
+export interface CalendarEvent {
+  title: string;
+  start: string;
+  end?: string;
+}
+
+interface Props {
+  events: CalendarEvent[];
+}
+
+// Función para inicializar el calendario
+---
+
+<div id="calendar" data-apos={JSON.stringify(dbAppointments)}></div>
+<script
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js"
+></script>
+
+<script>
+  // Obtén los eventos desde el componente o directamente
+  document.addEventListener("DOMContentLoaded", function () {
+    var calendarEl = document.getElementById("calendar");
+    var appointmentsData = calendarEl?.getAttribute('data-apos');
+    var events = JSON.parse(appointmentsData).map((appointment:any) => ({
+      title: appointment._id,
+      start: '2024-06-30',
+      end: '2024-07-01'
+    }));
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: "dayGridWeek",
+      events: events
+    });
+    calendar.render();
+  });
+  var calendarEl = document.getElementById("calendar");
+  var appointmentsData = calendarEl?.getAttribute('data-apos');
+  console.log(JSON.parse(appointmentsData));
+  //var appointments = JSON.parse(appointmentsData);
+</script>
+
+
+<style>
+  :root{
+    --fc-event-bg-color: rgb(40 80 255 / 15%);
+    --fc-event-border-color: var(--bs-primary);
+    --fc-button-bg-color: var(--bs-primary);
+    --fc-today-bg-color: rgba(180, 180, 180, 0.15);
+
+  }
+</style>

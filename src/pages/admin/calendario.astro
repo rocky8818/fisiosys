@@ -1,7 +1,18 @@
 ---
+// src/pages/admin/calendario.astro
 import AdminLayout from "../../layouts/AdminLayout.astro";
+import CalendarComponent from "../../AdminComponents/Calendars/Calendar.astro";
 
-
+const events = [
+  { title: "Evento 1", start: "2024-07-01" },
+  { title: "Evento 2", start: "2024-07-02", end: "2024-07-03" },
+  // Agrega más eventos según sea necesario
+];
 ---
 
-<AdminLayout />
+<AdminLayout>
+  <div style="padding: 50px; height:70dvh">
+    <h4 class="fw-bold py-3 mb-4">Calendario</h4>
+    <CalendarComponent events={events} />
+  </div>
+</AdminLayout>

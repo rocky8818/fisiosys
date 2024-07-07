@@ -39,6 +39,7 @@ import DashboardIcon from "../AdminComponents/BoxIcons/DashboardIcon.astro"
   <!-- Vendors CSS -->
   <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
+
   <!-- Helpers -->
   <script is:inline src="/assets/vendor/js/helpers.js"></script>
 
@@ -110,17 +111,11 @@ import DashboardIcon from "../AdminComponents/BoxIcons/DashboardIcon.astro"
       <div class="content-wrapper">
 
         <!-- Content -->
-        <div class="container-xxl flex-grow-1 container-p-y">
-          <h4 class="fw-bold py-3 mb-4">Page</h4>
-          <p>Sample page.<br />For more layout options use
-            <a href="javascript:void(0);" target="_blank" class="fw-bold">HTML starter template generator</a>
-            and refer <a href="javascript:void(0);" target="_blank" class="fw-bold">Layout docs</a>.
-          </p>
-        </div>
-        <!--/ Content -->
+        
         <slot>
 
         </slot>
+        <!--/ Content -->
 
         <!-- Content area backdrop -->
         <div class="content-backdrop fade"></div>

@@ -1,7 +1,73 @@
 ---
 import AdminLayout from "../../layouts/AdminLayout.astro";
 
+import { Patients } from "astro:db";
+import { db } from "astro:db";
 
+const patients = await db.select().from(Patients);
 ---
 
-<AdminLayout />
+<AdminLayout>
+    <div style="padding: 50px 40px;">
+      <div style="display: flex; justify-content: end;">
+        <a href="/admin/crear/paciente" class="btn btn-primary mb-4">Agregar</a>
+      </div>
+    <div class="card">
+      <h5 class="card-header">Pacientes</h5>
+      <div class="table-responsive text-nowrap">
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th>Nombre</th>
+              <th>id</th>
+              <th>Sesiones</th>
+              <th>Estado</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody class="table-border-bottom-0">
+            {
+              patients.map((patient) => (
+                <tr>
+                  <td>
+                    <i class="fab fa-angular fa-lg text-danger me-3" />
+                    <span class="fw-medium">
+                      {patient.name} {patient.lastName}
+                    </span>
+                  </td>
+                  <td>{patient._id}</td>
+                  <td>Sesiones</td>
+                  {
+                    //TODO añadir sesiones
+                  }
+                  <td>
+                    <span class="badge bg-label-primary me-1">Active</span>
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <button
+                        type="button"
+                        class="btn p-0 dropdown-toggle hide-arrow"
+                        data-bs-toggle="dropdown"
+                      >
+                        <i class="bx bx-dots-vertical-rounded" />
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="javascript:void(0);">
+                          <i class="bx bx-edit-alt me-1" /> Edit
+                        </a>
+                        <a class="dropdown-item" href="javascript:void(0);">
+                          <i class="bx bx-trash me-1" /> Delete
+                        </a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</AdminLayout>

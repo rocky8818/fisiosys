@@ -1,0 +1,104 @@
+---
+const {editar = false} = Astro.props
+const actionLink = '/api/crear/paciente'
+---
+  
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xl">
+        <div class="card mb-4">
+          <div
+            class="card-header d-flex justify-content-between align-items-center"
+          >
+            <h5 class="mb-0">{editar ? 'Editar' : 'Agregar'} un {editar ? '' : 'nuevo'} paciente</h5>
+            <small class="text-muted float-end">Fisio system Paola Reyes</small>
+          </div>
+          <div class="card-body">
+            <form method="Post" action={actionLink}>
+              <div class="row g-3">
+
+                <div class="col-md-6 mb-3">
+                  <label class="form-label" for="basic-icon-default-fullname"
+                  >Nombre</label
+                  >
+                  <div class="input-group input-group-merge">
+                    <span
+                    id="basic-icon-default-fullname2"
+                    class="input-group-text"><i class="bx bx-user"></i></span
+                    >
+                    <input
+                    name="nombre"
+                    type="text"
+                    class="form-control"
+                    id="basic-icon-default-fullname"
+                    aria-describedby="basic-icon-default-fullname2"
+                    />
+                  </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="basic-icon-default-fullname"
+                >Apellido</label
+                >
+                <div class="input-group input-group-merge">
+                  <span
+                  id="basic-icon-default-fullname2"
+                    class="input-group-text"><i class="bx bx-user"></i></span
+                    >
+                    <input
+                    name="apellido"
+                    type="text"
+                    class="form-control"
+                    id="basic-icon-default-fullname"
+                    aria-describedby="basic-icon-default-fullname2"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-phone"
+                  >Teléfono</label
+                >
+                <div class="input-group input-group-merge">
+                  <span id="basic-icon-default-phone2" class="input-group-text"
+                    ><i class="bx bx-phone"></i></span
+                  >
+                  <input
+                    name="telefono"
+                    type="text"
+                    id="basic-icon-default-phone"
+                    class="form-control phone-mask"
+                    aria-describedby="basic-icon-default-phone2"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-message"
+                  >Anotaciones</label
+                >
+                <div class="input-group input-group-merge">
+                  <span
+                    id="basic-icon-default-message2"
+                    class="input-group-text"><i class="bx bx-comment"></i></span
+                  >
+                  <textarea
+                    name="anotaciones"
+                    id="basic-icon-default-message"
+                    class="form-control"
+                    aria-describedby="basic-icon-default-message2"></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">{editar ? "Editar" : "Agregar"} Paciente</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style>
+  .container {
+    padding: 30px 10px;
+  }
+</style>
