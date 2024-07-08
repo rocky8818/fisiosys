@@ -1,0 +1,82 @@
+---
+import { Patients } from "astro:db";
+import { db } from "astro:db";
+
+const { editar = false } = Astro.props;
+const actionLink = "/api/crear/sesion";
+
+const pacientes = await db.select().from(Patients)
+---
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl">
+      <div class="card mb-4">
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+        >
+          <h5 class="mb-0">
+            {editar ? "Editar" : "Agregar"} un {editar ? "" : "nuevo"} Sesión
+          </h5>
+          <small class="text-muted float-end">Fisio system Paola Reyes</small>
+        </div>
+        <div class="card-body">
+          <form method="Post" action={actionLink}>
+            <div class="row g-3">
+              <div class="mb-3">
+                <label for="defaultSelect" class="form-label"
+                  >Paciente</label
+                >
+                <select id="defaultSelect" name="paciente" class="form-select">
+                  {
+                    pacientes.map((paciente) => (
+                        <option value={paciente._id}>{paciente.name} {paciente.lastName}</option>
+                    ))
+                  }
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="basic-icon-default-phone"
+                >Titulo De Sesión</label
+              >
+              <div class="input-group input-group-merge">
+                <input
+                  name="titulo"
+                  type="text"
+                  id="basic-icon-default-phone"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="basic-icon-default-message"
+                >Descripción</label
+              >
+              <div class="input-group input-group-merge">
+                <span id="basic-icon-default-message2" class="input-group-text"
+                  ><i class="bx bx-comment"></i></span
+                >
+                <textarea
+                  name="descripcion"
+                  id="basic-icon-default-message"
+                  class="form-control"
+                  aria-describedby="basic-icon-default-message2"></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary"
+              >{editar ? "Editar" : "Agregar"} Sesion</button
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .container {
+    padding: 30px 10px;
+  }
+</style>
