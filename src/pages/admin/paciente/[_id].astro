@@ -1,0 +1,63 @@
+---
+import { like } from "astro:db";
+import { Cases, eq } from "astro:db";
+import { db } from "astro:db";
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import { Patients } from "astro:db";
+
+const { _id } = Astro.params;
+
+const sesiones = await db.select().from(Cases).where(like(Cases.patientId, _id));
+const paciente = await db.select().from(Patients).where(like(Patients._id, _id));
+console.log(sesiones);
+---
+
+<AdminLayout>
+  <div class="p-5 mb-5">
+    <div class="col-12 col-md-8 card-separator mb-5">
+      <h3>{paciente[0].name} {paciente[0].lastName}</h3>
+      <small>id: {paciente[0]._id}</small>
+      <div class="d-flex justify-content-between flex-wrap gap-3 me-5">
+        <div class="d-flex align-items-center gap-3 me-4 me-sm-0">
+          <span class="bg-label-primary p-2 rounded">
+            <i class="bx bx-band-aid bx-sm"></i>
+          </span>
+          <div class="content-right">
+            <p class="mb-0">Sesiones</p>
+            <h4 class="text-primary mb-0">{sesiones.length}</h4>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="bg-label-info p-2 rounded">
+            <i class="bx bx-palette bx-sm"></i>
+          </span>
+          <div class="content-right">
+            <p class="mb-0">Estado</p>
+            <h4 class="text-info mb-0">Activo</h4>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="bg-label-warning p-2 rounded">
+            <i class="bx bx-calendar bx-sm"></i>
+          </span>
+          <div class="content-right">
+            <p class="mb-0">Última Sesión</p>
+            <h4 class="text-warning mb-0">14 mayo</h4>
+          </div>
+        </div>
+    </div>
+</div>
+
+{
+    //TODO agregar createdAt a todas las colecciones
+    //TODO estilizar las sesiones por paciente
+    sesiones.map((sesion) => (
+        <div>
+            <h4>{sesion.title}</h4>
+            <small>{sesion.createdAt}</small>
+            <p>{sesion.description}</p>
+        </div>
+    ))
+}
+</div>
+</AdminLayout>

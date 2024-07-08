@@ -1,17 +1,18 @@
 ---
 import AdminLayout from "../../layouts/AdminLayout.astro";
 
-import { Patients } from "astro:db";
+import { Patients, Cases } from "astro:db";
 import { db } from "astro:db";
 
 const patients = await db.select().from(Patients);
+const sesiones = await db.select().from(Cases);
 ---
 
 <AdminLayout>
-    <div style="padding: 50px 40px;">
-      <div style="display: flex; justify-content: end;">
-        <a href="/admin/crear/paciente" class="btn btn-primary mb-4">Agregar</a>
-      </div>
+  <div style="padding: 50px 40px;">
+    <div style="display: flex; justify-content: end;">
+      <a href="/admin/crear/paciente" class="btn btn-primary mb-4">Agregar</a>
+    </div>
     <div class="card">
       <h5 class="card-header">Pacientes</h5>
       <div class="table-responsive text-nowrap">
@@ -36,10 +37,13 @@ const patients = await db.select().from(Patients);
                     </span>
                   </td>
                   <td>{patient._id}</td>
-                  <td>Sesiones</td>
-                  {
-                    //TODO añadir sesiones
-                  }
+                  <td>
+                    {
+                      sesiones.filter(
+                        (sesion) => sesion.patientId == patient._id
+                      ).length
+                    }
+                  </td>
                   <td>
                     <span class="badge bg-label-primary me-1">Active</span>
                   </td>
